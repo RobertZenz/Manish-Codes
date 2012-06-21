@@ -5,19 +5,23 @@ function with_jquery(f) {
 	document.body.appendChild(script);
 };
 
+function get_tagline(comicName) {
+	taglines = [
+		"I'm completely clueless. Please accept this ${comic} strip as a gesture of shame and apology.",
+		"This is a great question - I'm completely dumbfounded as to what its solution is. But I do have a ${comic} strip!",
+		"I have no idea. But here's a ${comic} strip to help console you.",
+		"I have no idea. However, legend has it that reading ${comic} strips will increase your problem solving ability so maybe that can help you.",
+		"I'm so glad you asked me that, but I have no clue how to solve it. Have a ${comic} strip instead!",
+		"That's a fascinating problem, but I really have no idea how to solve it. Have this great ${comic} strip instead!",
+		"Hmm, you seem to be in the wrong place for this question. Fortunately, I have something which may help you:",
+		"Isn't programming fun? I'll tell you what else is fun. ${comic}!"
+	];
+	
+	return taglines[Math.floor(taglines.length * Math.random())].replace("${comic}", comicName);
+}
 
 with_jquery(function ($) {
 	$('document').ready(function () {
-
-		window.taglines = [
-			"I'm completely clueless. Please accept this Calvin & Hobbes strip as a gesture of shame and apology.",
-			"This is a great question - I'm completely dumbfounded as to what its solution is. But I do have a Calvin & Hobbes strip!",
-			"I have no idea. But here's a Calvin & Hobbes strip to help console you.",
-			"I have no idea. However, legend has it that reading Calvin & Hobbes strips will increase your problem solving ability so maybe that can help you.",
-			"I'm so glad you asked me that, but I have no clue how to solve it. Have a Calvin & Hobbes strip instead!",
-			"That's a fascinating problem, but I really have no idea how to solve it. Have this great Calvin & Hobbes strip instead!",
-			"Hmm, you seem to be in the wrong place for this question. Fortunately, I have something which may help you:", "Isn't programming fun? I'll tell you what else is fun. Calvin&Hobbes!"
-		];
 
 		if ($('.question .post-menu a[id^="close-question"]').length > 0 && $('.question .post-menu a[id^="close-question"]')[0].innerHTML.indexOf("reopen") == -1) {
 			window.qid = $('.question').attr('data-questionid');
@@ -41,7 +45,7 @@ with_jquery(function ($) {
 				var dateStr = date.getFullYear() + "." + pad(date.getMonth() + 1) + "." + pad(date.getDate());
 				var url = "http://comics.dp.cx/" + dateStr + "/Calvin%20and%20Hobbes-" + dateStr + ".gif";
 
-				$('#wmd-input')[0].value = taglines[Math.floor(taglines.length * Math.random())] + "\n\n![enter image description here][1]\n\n  [1]: " + url;
+				$('#wmd-input')[0].value = get_tagline("Calvin & Hobbes") + "\n\n![This is a simple comic strip...sorry...][1]\n\n  [1]: " + url;
 				$('#communitymode').click();
 				$('#question a.vote-down-off:not(.vote-down-on)').click();
 				StackExchange.MarkdownEditor.refreshAllPreviews();
