@@ -33,10 +33,10 @@ function get_tagline(comicName) {
 }
 
 function make_url(randomDate, url) {
-	url = url.replace("%y", randomDate.getFullYear().toString().substring(2));
-	url = url.replace("%Y", randomDate.getFullYear());
-	url = url.replace("%m", pad(randomDate.getMonth()));
-	url = url.replace("%d", pad(randomDate.getDay()));
+	url = url.replace(/%y/g, randomDate.getFullYear().toString().substring(2));
+	url = url.replace(/%Y/g, randomDate.getFullYear());
+	url = url.replace(/%m/g, pad(randomDate.getMonth()));
+	url = url.replace(/%d/g, pad(randomDate.getDay()));
 
 	return url;
 }
