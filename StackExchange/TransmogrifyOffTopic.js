@@ -5,6 +5,18 @@ function with_jquery(f) {
 	document.body.appendChild(script);
 };
 
+function get_random_date(minDate) {
+	var minDateTime = minDate.getTime();
+	var todayTime = new Date().getTime();
+
+	var diff = (todayTime - minDateTime);
+
+	var randomDate = new Date();
+	randomDate.setTime(minDateTime + (Math.random() * diff));
+	
+	return randomDate;
+}
+
 function get_tagline(comicName) {
 	taglines = [
 		"I'm completely clueless. Please accept this ${comic} strip as a gesture of shame and apology.",
@@ -17,9 +29,25 @@ function get_tagline(comicName) {
 		"Isn't programming fun? I'll tell you what else is fun. ${comic}!"
 	];
 	
-	return taglines[Math.floor(taglines.length * Math.random())].replace("${comic}", comicName);
+	return taglines[Math.floor(Math.random() * taglines.length)].replace("${comic}", comicName);
 }
 
+function make_url(randomDate, url) {
+	url = url.replace("%y", randomDate.getFullYear().toString().substring(2));
+	url = url.replace("%Y", randomDate.getFullYear());
+	url = url.replace("%m", pad(randomDate.getMonth()));
+	url = url.replace("%d", pad(randomDate.getDay()));
+
+	return url;
+}
+
+function pad(number) {
+	if (number < 10) {
+		return "0" + number;
+	}
+	return number;
+}
+				
 with_jquery(function ($) {
 	$('document').ready(function () {
 
@@ -31,19 +59,7 @@ with_jquery(function ($) {
 			$('.question .post-menu a:last').on("click", function (event) {
 				$('.question .post-menu a[id^="close-question"]')[0].click();
 
-
-				function pad(number) {
-					if (number < 10) {
-						return "0" + "" + number;
-					}
-					return number + "";
-				}
-				var start = new Date('August 25, 2003').getTime();
-				var daydiff = (new Date().getTime() - start) / (1000 * 60 * 60 * 24)
-				var date = new Date()
-				date.setTime(start + ((1000 * 60 * 60 * 24) * parseInt(daydiff * Math.random())));
-				var dateStr = date.getFullYear() + "." + pad(date.getMonth() + 1) + "." + pad(date.getDate());
-				var url = "http://comics.dp.cx/" + dateStr + "/Calvin%20and%20Hobbes-" + dateStr + ".gif";
+				var url = make_url(get_random_date(new Date('August 25, 2003'), "http://comics.dp.cx/%Y.%m.%d/Calvin%20and%20Hobbes-%Y.%m.%d.gif"));
 
 				$('#wmd-input')[0].value = get_tagline("Calvin & Hobbes") + "\n\n![This is a simple comic strip...sorry...][1]\n\n  [1]: " + url;
 				$('#communitymode').click();
