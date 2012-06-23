@@ -5,6 +5,12 @@ function with_jquery(f) {
 	document.body.appendChild(script);
 };
 
+function get_dp_comic_post(comicName, comicUrlPart) {
+	return get_tagline(comicName) +
+		"\n\n![This is a simple comic strip...sorry...][1]\n\n  [1]: " +
+		make_url(get_random_date(new Date("August 25, 2003")), "http://comics.dp.cx/%Y.%m.%d/" + comicUrlPart + "-%Y.%m.%d.gif");
+}
+
 function get_random_date(minDate) {
 	var minDateTime = minDate.getTime();
 	var todayTime = new Date().getTime();
@@ -15,6 +21,16 @@ function get_random_date(minDate) {
 	randomDate.setTime(minDateTime + (Math.random() * diff));
 	
 	return randomDate;
+}
+
+function get_random_dp_comic_post() {
+	comics = [
+		["Calvin & Hobbes", "Calvin%20and%20Hobbes"],
+		["Garfield", "Garfield"]
+	];
+	
+	randomComic = comics[Math.floor(Math.random() * comics.length)];
+	return get_dp_comic_post(randomComic[0], randomComic[1]);
 }
 
 function get_tagline(comicName) {
@@ -59,9 +75,7 @@ with_jquery(function ($) {
 			$('.question .post-menu a:last').on("click", function (event) {
 				$('.question .post-menu a[id^="close-question"]')[0].click();
 
-				var url = make_url(get_random_date(new Date('August 25, 2003'), "http://comics.dp.cx/%Y.%m.%d/Calvin%20and%20Hobbes-%Y.%m.%d.gif"));
-
-				$('#wmd-input')[0].value = get_tagline("Calvin & Hobbes") + "\n\n![This is a simple comic strip...sorry...][1]\n\n  [1]: " + url;
+				$('#wmd-input')[0].value = get_random_dp_comic_post();
 				$('#communitymode').click();
 				$('#question a.vote-down-off:not(.vote-down-on)').click();
 				StackExchange.MarkdownEditor.refreshAllPreviews();
