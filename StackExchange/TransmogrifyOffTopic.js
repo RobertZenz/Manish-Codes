@@ -24,9 +24,53 @@ function get_random_date(minDate) {
 }
 
 function get_random_dp_comic_post() {
+	// Should those comics have a different start date,
+	// extract it into this array here.
+	
+	// The URL-Part is here because I *think* some of
+	// the names are wrong.
 	comics = [
 		["Calvin & Hobbes", "Calvin%20and%20Hobbes"],
-		["Garfield", "Garfield"]
+		["Garfield", "Garfield"],
+		["Get Fuzzy", "Get%20Fuzzy"],
+		["UserFriendly", "User%20Friendly"],
+		["Penny Arcade", "Penny%20Arcade"],
+		["Little Gamers", "Little%20Gamers"],
+		["Redmeat", "Redmeat"],
+		["Heathcliff", "Heathcliff"],
+		["Speed Bump", "Speed%20Bump"],
+		["Hi and Lois", "Hi%20and%20Lois"],
+		["General Protection Fault", "General%20Protection%20Fault"],
+		["MegaTokyo", "MegaTokyo"],
+		["Stone Soup", "Stone%20Soup"],
+		["Sinfest", "Sinfest"],
+		["Non Sequitur", "Non%20Sequitur"],
+		["Wizard of Id", "Wizard%20of%20Id"],
+		["Doonesbury", "Doonesbury"],
+		["Off the Mark", "Off%20the%20Mark"],
+		["Ctrl+Alt+Del", "Ctrl%2BAlt%2BDel"],
+		["Better%20Half", "Better%20Half"],
+		["Cornered", "Cornered"],
+		["Big Top", "Big%20Top"],
+		["Mostly Business", "Mostly%20Business"],
+		["Ziggy", "Ziggy"],
+		["Jump Start", "Jump%20Start"],
+		["Arlo", "Arlo%20%26%20Jones"],
+		["Big Nate", "Big%20Nate"],
+		["The Duplex", "The%20Duplex"],
+		["Frank & Ernest", "Frank%20%26%20Ernest"],
+		["Monty", "Monty"],
+		["Pickles", "Pickles"],
+		["Real Life Adventures", "Real%20Life%20Adventures"],
+		["Reality Check", "Reality%20Check"],
+		["Working Daze", "Working%20Daze"],
+		["Goats", "Goats"],
+		["Questionable Content", "Questionable%20Content"],
+		["Pearls Before Swine", "Pearls%20Before%20Swine"],
+		["The Order of the Stick", "The%20Order%20of%20the%20Stick"],
+		["Least I Could Do", "Least%20I%20Could%20Do"],
+		["PHD Comics", "PHD%20Comics"],
+		["F-Minus", "F-Minus"]
 	];
 	
 	randomComic = comics[Math.floor(Math.random() * comics.length)];
