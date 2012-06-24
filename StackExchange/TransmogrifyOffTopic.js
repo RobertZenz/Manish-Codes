@@ -136,7 +136,7 @@ with_jquery(function ($) {
 		if ($('.question .post-menu a[id^="close-question"]').length > 0 && $('.question .post-menu a[id^="close-question"]')[0].innerHTML.indexOf("reopen") == -1) {
 			window.qid = $('.question').attr('data-questionid');
 			$('<span class="lsep">|</span>').appendTo('.question .post-menu');
-			$('.question .post-menu a:last').clone().attr("id", "close-offtopic").attr("title", "Answer with a Calvin and Hobbes strip, along with a closevote.").appendTo('.question .post-menu');
+			$('.question .post-menu a:last').clone().attr("id", "close-offtopic").attr("title", "Answer with a random comic strip from comics.dp.cx, along with a closevote.").appendTo('.question .post-menu');
 			$('.question .post-menu a:last')[0].innerHTML = "transmogrify";
 			$('.question .post-menu a:last').on("click", function (event) {
 				$('.question .post-menu a[id^="close-question"]')[0].click();
