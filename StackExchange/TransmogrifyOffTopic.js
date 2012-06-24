@@ -1,3 +1,6 @@
+/**
+ * Not sure what this is...didn't write it.
+ */
 function with_jquery(f) {
 	var script = document.createElement("script");
 	script.type = "text/javascript";
@@ -5,12 +8,18 @@ function with_jquery(f) {
 	document.body.appendChild(script);
 };
 
+/**
+ * Return a post with the given dp comic.
+ */
 function get_dp_comic_post(comicName, comicUrlPart) {
 	return get_tagline(comicName) +
 		"\n\n![This is a simple comic strip...sorry...][1]\n\n  [1]: " +
 		make_url(get_random_date(new Date("August 25, 2003")), "http://comics.dp.cx/%Y.%m.%d/" + comicUrlPart + "-%Y.%m.%d.gif");
 }
 
+/**
+ * Returns a random date greater then minDate.
+ */
 function get_random_date(minDate) {
 	var minDateTime = minDate.getTime();
 	var todayTime = new Date().getTime();
@@ -23,6 +32,9 @@ function get_random_date(minDate) {
 	return randomDate;
 }
 
+/**
+ * Return a random post with a dp comic.
+ */
 function get_random_dp_comic_post() {
 	// Should those comics have a different start date,
 	// extract it into this array here.
@@ -77,6 +89,9 @@ function get_random_dp_comic_post() {
 	return get_dp_comic_post(randomComic[0], randomComic[1]);
 }
 
+/**
+ * Returns a random taglines with the comic name filled in.
+ */
 function get_tagline(comicName) {
 	taglines = [
 		"I'm completely clueless. Please accept this ${comic} strip as a gesture of shame and apology.",
@@ -92,6 +107,9 @@ function get_tagline(comicName) {
 	return taglines[Math.floor(Math.random() * taglines.length)].replace("${comic}", comicName);
 }
 
+/**
+ * Replaces the date tokens with the given date. C-convention applies.
+ */
 function make_url(randomDate, url) {
 	url = url.replace(/%y/g, randomDate.getFullYear().toString().substring(2));
 	url = url.replace(/%Y/g, randomDate.getFullYear());
@@ -101,10 +119,14 @@ function make_url(randomDate, url) {
 	return url;
 }
 
+/**
+ * Pad the number to be at least two digits.
+ */
 function pad(number) {
 	if (number < 10) {
 		return "0" + number;
 	}
+	
 	return number;
 }
 				
